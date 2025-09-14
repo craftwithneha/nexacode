@@ -46,8 +46,14 @@ export const metadata = {
   title: "NexaCode",
   description: "Your AI coding assistant powered by Next.js & Appwrite",
   icons: {
-    icon: "/favicon.ico",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon.ico", type: "image/x-icon" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: "/favicon.ico",
   },
+  manifest: "/manifest.json",
 };
 
 export default function RootLayout({
@@ -57,6 +63,31 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              // Global error handler for external scripts
+              window.addEventListener('error', function(e) {
+                if (e.filename && e.filename.includes('contentScript')) {
+                  e.preventDefault();
+                  console.warn('External script error prevented:', e.message);
+                  return false;
+                }
+              });
+              
+              // Handle unhandled promise rejections
+              window.addEventListener('unhandledrejection', function(e) {
+                if (e.reason && e.reason.message && e.reason.message.includes('find')) {
+                  e.preventDefault();
+                  console.warn('External script promise rejection prevented:', e.reason);
+                  return false;
+                }
+              });
+            `,
+          }}
+        />
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
       </body>

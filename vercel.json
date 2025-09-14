@@ -2,11 +2,15 @@
   "version": 2,
   "builds": [
     {
-      "src": "next.config.js",
+      "src": "next.config.ts",
       "use": "@vercel/next"
     }
   ],
   "routes": [
+    {
+      "src": "/favicon.ico",
+      "dest": "/favicon.ico"
+    },
     {
       "src": "/(.*)",
       "dest": "/"
