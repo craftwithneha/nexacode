@@ -92,7 +92,7 @@ const nextConfig: NextConfig = {
   },
   
   // Output configuration for better deployment
-  output: 'standalone',
+  // output: 'standalone', // Commented out for Vercel compatibility
 };
 
 export default nextConfig;
