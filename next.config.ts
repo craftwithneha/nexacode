@@ -15,7 +15,6 @@ const nextConfig: NextConfig = {
   
   // Compression and optimization
   compress: true,
-  poweredByHeader: false,
   
   // Headers for better caching and security
   async headers() {
@@ -91,6 +90,9 @@ const nextConfig: NextConfig = {
   env: {
     CUSTOM_KEY: process.env.CUSTOM_KEY,
   },
+  
+  // Output configuration for better deployment
+  output: 'standalone',
 };
 
 export default nextConfig;
