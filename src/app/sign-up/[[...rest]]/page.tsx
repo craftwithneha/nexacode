@@ -118,7 +118,7 @@ import { useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { User, Mail, Lock } from 'lucide-react';
-import { account } from '@/lib/appwriteClient';
+import { account } from '@/lib/appwrite';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
