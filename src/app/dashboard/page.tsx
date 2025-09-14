@@ -334,7 +334,7 @@ export default function DashboardPage() {
       {/* Header */}
       <header className="px-6 py-4 bg-black/60 border-b border-[#60FCB6]/40 shadow-lg backdrop-blur-md flex items-center justify-between neon-glow">
         <h1 className="text-xl font-extrabold text-[#60FCB6] drop-shadow-[0_0_15px_rgba(96,252,182,0.7)]">
-          CodeMate AI
+          NexaCode
         </h1>
       </header>
 
