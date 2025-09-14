@@ -391,7 +391,7 @@ export default function DashboardPage() {
                       : "bg-[#60FCB6]/20 border-[#60FCB6]/40 text-[#60FCB6]"
                   )}
                 >
-                  {msg.role === "user" ? "You" : "CodeMate AI"}
+                  {msg.role === "user" ? "You" : "NexaCode"}
                 </div>
 
                 {/* Content */}
