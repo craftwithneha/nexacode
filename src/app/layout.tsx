@@ -69,7 +69,7 @@ export default function RootLayout({
             __html: `
               // Global error handler for external scripts
               window.addEventListener('error', function(e) {
-                if (e.filename && e.filename.includes('contentScript')) {
+                if (e.filename && (e.filename.includes('contentScript') || e.filename.includes('extension'))) {
                   e.preventDefault();
                   console.warn('External script error prevented:', e.message);
                   return false;
@@ -78,12 +78,30 @@ export default function RootLayout({
               
               // Handle unhandled promise rejections
               window.addEventListener('unhandledrejection', function(e) {
-                if (e.reason && e.reason.message && e.reason.message.includes('find')) {
+                if (e.reason && e.reason.message && (e.reason.message.includes('find') || e.reason.message.includes('i18next'))) {
                   e.preventDefault();
                   console.warn('External script promise rejection prevented:', e.reason);
                   return false;
                 }
               });
+              
+              // Suppress i18next warnings
+              const originalWarn = console.warn;
+              console.warn = function(...args) {
+                if (args[0] && typeof args[0] === 'string' && args[0].includes('i18next')) {
+                  return;
+                }
+                originalWarn.apply(console, args);
+              };
+              
+              // Suppress lazy loading warnings
+              const originalLog = console.log;
+              console.log = function(...args) {
+                if (args[0] && typeof args[0] === 'string' && args[0].includes('Images loaded lazily')) {
+                  return;
+                }
+                originalLog.apply(console, args);
+              };
             `,
           }}
         />

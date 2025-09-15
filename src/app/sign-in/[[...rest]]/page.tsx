@@ -117,7 +117,7 @@ import { useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { User, Lock } from 'lucide-react';
-import { account } from '@/lib/appwrite';
+import { account, appwriteErrorHandler } from '@/lib/appwrite';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
@@ -149,11 +149,8 @@ export default function SignInPage() {
 
       router.push('/dashboard');
     } catch (err) {
-      if (err instanceof Error) {
-        setError(err.message);
-      } else {
-        setError('Invalid credentials');
-      }
+      console.error('Sign in error:', err);
+      setError(appwriteErrorHandler(err));
     } finally {
       setLoading(false);
     }

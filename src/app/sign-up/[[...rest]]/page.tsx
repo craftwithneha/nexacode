@@ -118,7 +118,7 @@ import { useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { User, Mail, Lock } from 'lucide-react';
-import { account } from '@/lib/appwrite';
+import { account, appwriteErrorHandler } from '@/lib/appwrite';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
@@ -140,11 +140,8 @@ export default function SignUpPage() {
       await account.createEmailPasswordSession(email, password); // Auto login
       router.push('/dashboard');
     } catch (err) {
-      if (err instanceof Error) {
-        setError(err.message);
-      } else {
-        setError('Something went wrong');
-      }
+      console.error('Sign up error:', err);
+      setError(appwriteErrorHandler(err));
     } finally {
       setLoading(false);
     }
