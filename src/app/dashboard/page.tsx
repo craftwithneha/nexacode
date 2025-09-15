@@ -275,6 +275,7 @@ export default function DashboardPage() {
     return new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
   };
 
+
   const sendMessage = async () => {
     if (!input.trim()) return;
 
@@ -336,6 +337,7 @@ export default function DashboardPage() {
         <h1 className="text-xl font-extrabold text-[#60FCB6] drop-shadow-[0_0_15px_rgba(96,252,182,0.7)]">
           NexaCode
         </h1>
+        
       </header>
 
       {/* Chat Container */}
